@@ -7,11 +7,11 @@ import {RouterLink} from 'vue-router'
   <body>
     
   
-  <main>
+  
   
     <h1>This is an about page</h1>
   
-</main>
+
 </body>
 </template>
 

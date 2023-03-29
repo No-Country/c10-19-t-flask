@@ -1,34 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
+
+
 // import HelloWorld from './components/HelloWorld.vue'
 
 </script>
 
 <template>
-  <header class="expand-lg">
-    <NavBar />
-    <!-- Example template -->
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
-      <!-- <HelloWorld msg="You did it!" /> -->
-      <!-- <NavBar /> -->
-      <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/singin">Sing in</RouterLink>
-      </nav> -->   
-  </header>
   <div>
-
+    <NavBar />
   </div>
-
+  
   <RouterView />
 </template>
 
 <!-- Examples styles -->
-<!-- <style>
+<!--<style>
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -91,4 +79,4 @@ nav a:first-of-type {
   }
 }
 
-</style> -->
+</style>-->

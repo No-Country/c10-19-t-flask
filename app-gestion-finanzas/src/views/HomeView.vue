@@ -1,4 +1,4 @@
-<script setup>
+<!--<script setup>
 import NavBar from '../components/NavBar.vue'
 import TheWelcome from '../components/TheWelcome.vue'
 import {RouterLink} from 'vue-router'
@@ -8,7 +8,7 @@ import {RouterLink} from 'vue-router'
   <body class="bg-warning">
   <main >
     <h1>HOla soy el home view</h1>
-    <RouterLink :to="'SingInForm'" />
+    
   </main>
 </body>
-</template>
+</template> -->
