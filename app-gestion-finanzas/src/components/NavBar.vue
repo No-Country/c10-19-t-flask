@@ -6,26 +6,31 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary col-md-12">
-    <div class="container-fluid text-center">
+    <div class="container-fluid p-2">
       <div class="row">
         <div class="">
           <div class="collapse navbar-collapse d-flex p-2" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <RouterLink to="/" class="nav-link active" aria-current="page">Home</RouterLink>
+              <li class="nav-item p-2">
+                <RouterLink to="/" class="nav-link active" aria-current="page">temporary home</RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/about" class="nav-link active" aria-current="page">About</RouterLink>
+              <li class="nav-item p-2">
+                <RouterLink to="/transactions" class="nav-link active" aria-current="page"><i class="bi bi-journal-text p-1 "></i>Transactions</RouterLink>
               </li>
-              <li class="nav-item">
-                <RouterLink to="/login" class="nav-link active" aria-current="page">Log in</RouterLink>
+              <li class="nav-item p-2">
+                <RouterLink to="/about" class="nav-link active" aria-current="page"><i class="bi bi-inboxes p-1"></i>Categories</RouterLink>
               </li>
+              <li class="nav-item p-2">
+                <RouterLink to="/login" class="nav-link active" aria-current="page"><i class="bi bi-three-dots-vertical p-1"></i>Menu</RouterLink>
+              </li>
+          
             </ul>
           </div>
         </div>
     </div>
   </div>
 </nav>
+
 
       <!--<ul class="nav justify-content-center">
         <li class="nav-item ">

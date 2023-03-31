@@ -1,14 +1,17 @@
-<!--<script setup>
+<script setup>
 import NavBar from '../components/NavBar.vue'
-import TheWelcome from '../components/TheWelcome.vue'
 import {RouterLink} from 'vue-router'
 </script>
 
 <template>
-  <body class="bg-warning">
-  <main >
-    <h1>HOla soy el home view</h1>
-    
-  </main>
-</body>
-</template> -->
+  
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <NavBar />
+            </div>
+        </div>
+    </div>
+
+
+</template>

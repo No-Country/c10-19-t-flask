@@ -13,6 +13,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
+
+
+
 const app = createApp(App)
 
 app.use(createPinia())
