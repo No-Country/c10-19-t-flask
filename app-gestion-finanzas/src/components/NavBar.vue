@@ -18,7 +18,7 @@ import { RouterLink, RouterView } from 'vue-router'
                 <RouterLink to="/about" class="nav-link active" aria-current="page">About</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink to="/singin" class="nav-link active" aria-current="page">Sing in</RouterLink>
+                <RouterLink to="/login" class="nav-link active" aria-current="page">Log in</RouterLink>
               </li>
             </ul>
           </div>
