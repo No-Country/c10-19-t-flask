@@ -13,7 +13,7 @@ import {RouterLink} from 'vue-router'
 <div class="container">
 <div class="row">
     <div class="col">
-        <h1>soy transactions</h1>
+        <h1>soy add expending</h1>
     </div>
 </div>
 </div>

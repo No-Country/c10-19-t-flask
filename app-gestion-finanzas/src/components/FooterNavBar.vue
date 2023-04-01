@@ -1,34 +1,44 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-
+import AddExpending from '../views/AddExpendingView.vue'
 
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary col-md-12">
-    <div class="container-fluid p-2">
-      <div class="row">
-        <div class="">
-          <div class="collapse navbar-collapse d-flex p-2" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item p-2">
-                <RouterLink to="/" class="nav-link active" aria-current="page">temporary home</RouterLink>
-              </li>
-              <li class="nav-item p-2">
-                <RouterLink to="/transactions" class="nav-link active" aria-current="page"><i class="bi bi-journal-text p-1 text-wrap"></i>
-                  Transactions</RouterLink>
-              </li>
-              <li class="nav-item p-2">
-                <RouterLink to="/about" class="nav-link active" aria-current="page"><i class="bi bi-inboxes p-1 fs-2 aling-text-center"></i><br><text class="fs-6">Categories</text></RouterLink>
-              </li>
-              <li class="nav-item p-2">
-                <RouterLink to="/login" class="nav-link active" aria-current="page"><i class="bi bi-three-dots-vertical p-1"></i>Menu</RouterLink>
-              </li>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid ">
+      
+        
+      
+      <div class="navbar navbar-expand w-100 d-flex flex-row justify-content-center" id="navbarSupportedContent">
+       
+        <!-- <div class="col-3"> -->
+        <ul class="navbar-nav">
+          <li class="nav-item text-center">
+            <RouterLink to="/addexpending" class="nav-link active " aria-current="page"><i class="bi bi-plus-circle-fill text-success fs-1 position-absolute top-0 start-100 translate-middle pe-3 pb-3"></i></RouterLink>
+          </li>
+          <li class="nav-item text-center">
+            <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text fs-5"></i></RouterLink>
+            <RouterLink to="/transactions" class="nav-link active " aria-current="page">Transactions</RouterLink>
+          </li>
+          <li class="nav-item text-center">
+            <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1 fs-5"></i></RouterLink>
+            <RouterLink to="/about" class="nav-link active " aria-current="page">Categories</RouterLink>
+          </li>
+          <li class="nav-item text-center">
+            <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1 fs-5"></i></RouterLink>
+            <RouterLink to="/about" class="nav-link active " aria-current="page">overview</RouterLink>
+          </li>
+          <!-- <li class="nav-item text-center">
+            <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-three-dots-vertical p-1 fs-5"></i></RouterLink>
+            <RouterLink to="/about" class="nav-link active " aria-current="page">menu</RouterLink>
+          </li> -->
           
-            </ul>
-          </div>
-        </div>
+        </ul>
+      <!-- </div> -->
+      </div>
     </div>
-  </div>
+   
 </nav>
+     
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
+import FooterNavBar from './components/FooterNavBar.vue';
 
 
 // import HelloWorld from './components/HelloWorld.vue'
@@ -9,7 +10,6 @@ import NavBar from './components/NavBar.vue'
 
 <template>
 
-  
 
   
   <RouterView />
