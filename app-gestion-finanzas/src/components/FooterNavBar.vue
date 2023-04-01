@@ -15,7 +15,7 @@ import AddExpending from '../views/AddExpendingView.vue'
         <!-- <div class="col-3"> -->
         <ul class="navbar-nav">
           <li class="nav-item text-center">
-            <RouterLink to="/addexpending" class="nav-link active " aria-current="page"><i class="bi bi-plus-circle-fill text-success fs-1 position-absolute top-0 start-100 translate-middle pe-3 pb-3"></i></RouterLink>
+            <RouterLink to="/addexpending" class="nav-link active" aria-current="page"><i class="bi bi-plus-circle-fill text-success position-absolute top-0 start-100 translate-middle pe-3 pb-3" style="font-size: 2.5rem;"></i></RouterLink>
           </li>
           <li class="nav-item text-center">
             <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text fs-5"></i></RouterLink>
