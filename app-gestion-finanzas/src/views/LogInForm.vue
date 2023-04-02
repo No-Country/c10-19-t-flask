@@ -41,7 +41,7 @@ import {RouterLink} from 'vue-router'
       </div>
 
       <div class="row justify-content-center">
-        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/home" class="nav-link active" aria-current="page">Entrar</RouterLink></button>  
+        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/transactions" class="nav-link active" aria-current="page">Entrar</RouterLink></button>  
       </div>
     
 

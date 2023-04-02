@@ -6,10 +6,10 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid p-2">
+    <div class="container-fluid d-flex justify-content-center p-2">
       <div class="row">
         <div class="">
-          <div class="navbar navbar-expand d-flex p-2" id="navbarSupportedContent">
+          <div class="navbar navbar-expand d-flex p-2 " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item p-2">
                 <RouterLink to="/" class="nav-link active " aria-current="page">temporary home</RouterLink>

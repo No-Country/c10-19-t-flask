@@ -10,10 +10,10 @@ import AddExpending from '../views/AddExpendingView.vue'
       
         
       
-      <div class="navbar navbar-expand w-100 d-flex flex-row justify-content-center" id="navbarSupportedContent">
+      <div class="navbar navbar-expand vw-100 d-flex flex-row justify-content-center" id="navbarSupportedContent">
        
         <!-- <div class="col-3"> -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ">
           <li class="nav-item text-center">
             <RouterLink to="/addexpending" class="nav-link active" aria-current="page"><i class="bi bi-plus-circle-fill text-success position-absolute top-0 start-100 translate-middle pe-3 pb-3" style="font-size: 2.5rem;"></i></RouterLink>
           </li>
