@@ -5,7 +5,7 @@ import AddExpending from '../views/AddExpendingView.vue'
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar bg-body-tertiary">
     <div class="container-fluid ">
       
         
@@ -15,7 +15,7 @@ import AddExpending from '../views/AddExpendingView.vue'
         <!-- <div class="col-3"> -->
         <ul class="navbar-nav ">
           <li class="nav-item text-center">
-            <RouterLink to="/addexpending" class="nav-link active" aria-current="page"><i class="bi bi-plus-circle-fill text-success position-absolute top-0 start-100 translate-middle pe-3 pb-3" style="font-size: 2.5rem;"></i></RouterLink>
+            <RouterLink to="/addexpending" class="nav-link active" aria-current="page"><i class="bi bi-plus-circle-fill text-success position-absolute top-0 start-100 translate-middle pe-3 pb-3" style="font-size: 2rem;"></i></RouterLink>
           </li>
           <li class="nav-item text-center">
             <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text fs-5"></i></RouterLink>

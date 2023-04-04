@@ -17,8 +17,8 @@ import {RouterLink} from 'vue-router'
     
  
   
-<div class="container-fluid">
-<div class="row d-flex justify-content-evenly p-2">
+<div class="container-fluid ">
+<div class="row d-flex justify-content-center p-2">
     <div class="col-12 text-center rounded-5 bg-primary p-3">
       <h1>Total</h1>
       <h2>$12000</h2>
@@ -36,8 +36,20 @@ import {RouterLink} from 'vue-router'
   <div class="col text-center">
     <h1>Today</h1>
   </div>
+  <div class="row justify-content-center">
+  <div class="col-3">
+    <h1>holass</h1>
+  </div>
+  <div class="col-6 text-center">
+    <h1 class="">com estas</h1>
+  </div>
+  <div class="col-3 text-end">
+    <h1 class="text-end">chau</h1>
+  </div>
 </div>
 </div>
+</div>
+
 <footer>
   
   <FooterNavBar class="d-md-none d-block fixed-bottom"/>

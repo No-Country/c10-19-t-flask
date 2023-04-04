@@ -22,13 +22,13 @@ import { RouterLink, RouterView } from 'vue-router'
     </aside>
 
     <aside class="p-1 d-md-none d-sm-block bg-light shadow border border-start-0 d-inline-block p3 vw-100" >
-        <section class="">
+        <div class="container-fluid">
         <ul class="navbar-nav me-auto d-flex flex-row justify-content-between p-3">
-                <li >calendar</li>
+                <li >Months</li>
                 <li><i class="bi bi-pencil fs-3"></i></li>
                 
             </ul>
-        </section>
+        </div>
     </aside>
 
 </template>
