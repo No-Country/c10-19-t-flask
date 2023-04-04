@@ -7,7 +7,7 @@ from sqlalchemy.orm import column_property
 
 class User(db.Model, BaseModelMixin):
     __tablename__ = "users"
-    __table_args__ = (db.UniqueConstraint("google_id"), db.UniqueConstraint("email"))
+    __table_args__ = (db.UniqueConstraint("google_id"), db.UniqueConstraint("email"), db.UniqueConstraint("facebook_id"))
 
     id = db.Column(db.Integer, primary_key=True)
     
@@ -17,12 +17,13 @@ class User(db.Model, BaseModelMixin):
     )
     
     google_id = db.Column(db.String, nullable=True)
+    facebook_id = db.Column(db.String, nullable=True)
     activated = db.Column(db.Boolean, default=False, server_default="f", nullable=False)
 
     # When the user chooses to set up an account directly with the app.
     _password = db.Column(db.String)
 
-    given_name = db.Column(db.String, nullable=True)
+    fullname = db.Column(db.String, nullable=True)
     email = db.Column(db.String, nullable=True)
     picture = db.Column(db.String, nullable=True)
 
