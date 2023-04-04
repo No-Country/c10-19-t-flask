@@ -7,7 +7,6 @@ from sqlalchemy.orm import column_property
 
 class User(db.Model, BaseModelMixin):
     __tablename__ = "users"
-    __table_args__ = (db.UniqueConstraint("google_id"), db.UniqueConstraint("email"), db.UniqueConstraint("facebook_id"))
 
     id = db.Column(db.Integer, primary_key=True)
     
@@ -16,8 +15,8 @@ class User(db.Model, BaseModelMixin):
         db.String, default=lambda: str(uuid.uuid4()), nullable=False
     )
     
-    google_id = db.Column(db.String, nullable=True)
-    facebook_id = db.Column(db.String, nullable=True)
+    social_id = db.Column(db.String, nullable=True, unique=True)
+    social_type = db.Column(db.String)
     activated = db.Column(db.Boolean, default=False, server_default="f", nullable=False)
 
     # When the user chooses to set up an account directly with the app.
@@ -39,3 +38,11 @@ class User(db.Model, BaseModelMixin):
 
     def verify_password(self, password):
         return check_password_hash(self._password, password)
+    
+    @classmethod
+    def find_by_email(cls, email):
+        return cls.query.filter_by(email=email).first()
+
+    @classmethod
+    def find_by_social_id(cls, social_id, social_type):
+        return cls.query.filter_by(social_id=social_id, social_type=social_type).first()
