@@ -31,9 +31,9 @@ import {RouterLink} from 'vue-router'
 
   <div class="row mt-5 justify-content-center me-2">
     <div class="col-2 text-center">
-      <h2>USD $</h2></div>
+      <text class="fs-3 fw-semibold">US$</text></div>
     <div class="col-4">
-      <input type="number" class= "form-control-plaintext border-warning-subtle" id="floatingInputGrid">
+      <input type="number" class= "form-control border-bottom" id="floatingInputGrid">
     </div>
   </div>
 </div>
