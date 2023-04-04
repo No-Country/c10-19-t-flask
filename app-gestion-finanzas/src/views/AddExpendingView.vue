@@ -24,7 +24,7 @@ import {RouterLink} from 'vue-router'
     <h2>Category</h2>
   </div>
   <div class="row text-start justify-content-center">
-    <div class="col-6 border-bottom border-warning-subtle">
+    <div class="col-6 border-bottom border-warning">
       <i class="bi bi-caret-down"></i>
     </div>
   </div>
@@ -33,7 +33,7 @@ import {RouterLink} from 'vue-router'
     <div class="col-2 text-center">
       <text class="fs-3 fw-semibold">US$</text></div>
     <div class="col-4">
-      <input type="number" class= "form-control border-bottom" id="floatingInputGrid">
+      <input type="number" class= "form-control-plaintext border-0 border-bottom border-warning" id="floatingInputGrid">
     </div>
   </div>
 </div>
