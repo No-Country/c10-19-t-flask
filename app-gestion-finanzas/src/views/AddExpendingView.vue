@@ -64,7 +64,7 @@ import {RouterLink} from 'vue-router'
       <h2>Note</h2>
     </div>
     <div class="row text-start justify-content-center">
-      <div class="col-6 border-bottom border-warning">
+      <div class="mt-5 col-6 border-bottom border-warning">
         
       </div>
     </div>
