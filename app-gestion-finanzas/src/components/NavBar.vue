@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="container-fluid ">
+  
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
-    
+    <div class="container-fluid ">
       <div class="row">
         <div class="">
           <div class="navbar navbar-expand d-flex p-2 " id="navbarSupportedContent">
@@ -29,9 +29,9 @@ import { RouterLink, RouterView } from 'vue-router'
           </div>
         </div>
     </div>
-  
+  </div> 
 </nav>
-</div>
+
 
 
       <!--<ul class="nav justify-content-center">

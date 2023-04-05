@@ -25,6 +25,24 @@ import {RouterLink} from 'vue-router'
       <div class="mb-3">
         <div class="row justify-content-center">
           <div class="col-10">
+            <label for="exampleInputPassword1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputText1">
+          </div>
+        </div>  
+      </div>
+
+      <div class="mb-3">
+        <div class="row justify-content-center">
+          <div class="col-10">
+            <label for="exampleInputPassword1" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="exampleInputText1">
+          </div>
+        </div>  
+      </div>
+
+      <div class="mb-3">
+        <div class="row justify-content-center">
+          <div class="col-10">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1">
           </div>
