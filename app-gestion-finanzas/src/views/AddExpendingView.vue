@@ -25,7 +25,12 @@ import {RouterLink} from 'vue-router'
     </div>
     <div class="row text-start justify-content-center">
       <div class="col-6 border-bottom border-warning">
-        <i class="bi bi-caret-down"></i>
+        <select class="form-select bg-body-tertiary border-0 border-bottom border-warning" id="inputGroupSelect01">
+          <option selected></option>
+          <option value="1">House</option>
+          <option value="2">Pet</option>
+          <option value="3">Health</option>
+        </select>
       </div>
     </div>
 
@@ -64,9 +69,11 @@ import {RouterLink} from 'vue-router'
       <h2>Note</h2>
     </div>
     <div class="row text-start justify-content-center">
-      <div class="mt-5 col-6 border-bottom border-warning">
-        
-      </div>
+      <div class="col-6">
+      
+      <input type="text" class= "form-control-plaintext border-0 border-bottom border-warning" id="floatingInputGrid">
+    </div>  
+      
     </div>
 
     <div class="row">

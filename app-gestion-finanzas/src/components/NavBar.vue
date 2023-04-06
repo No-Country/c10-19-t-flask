@@ -19,7 +19,7 @@ import { RouterLink, RouterView } from 'vue-router'
                 <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text"></i>Transactions</RouterLink>
               </li>
               <li class="nav-item p-2">
-                <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1"></i>Categories</RouterLink>
+                <RouterLink to="/categories" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1"></i>Categories</RouterLink>
               </li>
               <li class="nav-item p-2">
                 <RouterLink to="/login" class="nav-link active " aria-current="page"><i class="bi bi-three-dots-vertical p-1"></i>Menu</RouterLink>
