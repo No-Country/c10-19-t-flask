@@ -6,10 +6,10 @@ from app.db import db
 
 from app.modules.auth.v1.resources import *
 
-from .ext import ma, migrate
+from app.ext import ma, migrate
 from flask_cors import CORS
 
-def create_app(settings_module):
+def create_app(settings_module = 'config.local'):
    app = Flask(__name__)
    app.config.from_object(settings_module)
    

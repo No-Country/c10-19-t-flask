@@ -1,4 +1,5 @@
 import uuid
+from sqlalchemy import BOOLEAN, INTEGER, Column, String, Text
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from app.db import db, BaseModelMixin
@@ -8,25 +9,25 @@ from sqlalchemy.orm import column_property
 class User(db.Model, BaseModelMixin):
     __tablename__ = "users"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(INTEGER, primary_key=True)
     
     # An ID to use as a reference when sending email.
-    external_id = db.Column(
-        db.String, default=lambda: str(uuid.uuid4()), nullable=False
+    external_id = Column(
+        String(255), default=lambda: str(uuid.uuid4()), nullable=False
     )
     
-    social_id = db.Column(db.String, nullable=True, unique=True)
-    social_type = db.Column(db.String)
-    activated = db.Column(db.Boolean, default=False, server_default="f", nullable=False)
+    social_id = Column(Text(), nullable=True, unique=True)
+    social_type = Column(Text())
+    activated = Column(BOOLEAN, default=False, nullable=False) # type: ignore
 
     # When the user chooses to set up an account directly with the app.
-    _password = db.Column(db.String)
+    _password = Column(Text())
 
-    fullname = db.Column(db.String, nullable=True)
-    email = db.Column(db.String, nullable=True)
-    picture = db.Column(db.String, nullable=True)
+    fullname = Column(Text(), nullable=True)
+    email = Column(Text(), nullable=True)
+    picture = Column(Text(), nullable=True)
 
-    last_login = db.Column(db.DateTime, nullable=True)
+    last_login = Column(db.DateTime, nullable=True)
 
     @property
     def password(self):
@@ -37,7 +38,7 @@ class User(db.Model, BaseModelMixin):
         self._password = generate_password_hash(password)
 
     def verify_password(self, password):
-        return check_password_hash(self._password, password)
+        return check_password_hash(self._password, password)  # type: ignore
     
     @classmethod
     def find_by_email(cls, email):

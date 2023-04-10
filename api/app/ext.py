@@ -2,7 +2,6 @@ from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from marshmallow import SchemaOpts
 
-
 ma = Marshmallow()
 migrate = Migrate()
 
