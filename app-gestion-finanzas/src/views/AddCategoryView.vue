@@ -35,14 +35,28 @@ import {RouterLink} from 'vue-router'
       <h2>Icons</h2>
     </div>
     
-      <div class="col-6 border-bottom border-warning">
-        <select class="form-select bg-body-tertiary border-0 border-bottom border-warning" id="inputGroupSelect01">
-          <option selected></option>
-          <option value="1"><i class="bi bi-house-fill"></i></option>
+      <div class="col-6 border-bottom border-warning dropdown">
+        <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default"><i class="bi bi-chat-square-dots-fill"></i></span>
+  </div>
+  <select class="form-control">
+    <option value="" disabled selected>Select an icon</option>
+    <option value="bi bi-emoji-laughing-fill"><i class="bi bi-emoji-laughing-fill"></i> Emoji laughing</option>
+    <option value="bi bi-people-fill"><i class="bi bi-people-fill"></i> People</option>
+    <option value="bi bi-heart-fill"><i class="bi bi-heart-fill"></i> Heart</option>
+  </select>
+</div>
+      
+    
+
+        <!-- <select class="form-select bg-body-tertiary border-0 border-bottom border-warning" id="inputGroupSelect01">
+          <option selected class="bi bi-house-fill">hola</option>
+          <option value="1" class="bi bi-house-fill">Casa</option>
           <option value="2"><i class="bi bi-fuel-pump-fill"></i></option>
           <option value="3"><i class="bi bi-fuel-pump-fill"></i></option>
           <option value="3"><i class="bi bi-airplane-fill"></i></option>
-        </select>
+        </select> -->
       </div>
     </div>
 
