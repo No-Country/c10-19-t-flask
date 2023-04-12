@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import BOOLEAN, INTEGER, Column, String, Text
+from sqlalchemy import BOOLEAN, INTEGER, Column, ForeignKey, String, Text
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from app.db import db, BaseModelMixin
@@ -27,6 +27,7 @@ class User(db.Model, BaseModelMixin):
     email = Column(Text(), nullable=True)
     picture = Column(Text(), nullable=True)
 
+    created_at = Column(db.DateTime, nullable=True )
     last_login = Column(db.DateTime, nullable=True)
 
     @property
@@ -47,3 +48,44 @@ class User(db.Model, BaseModelMixin):
     @classmethod
     def find_by_social_id(cls, social_id, social_type):
         return cls.query.filter_by(social_id=social_id, social_type=social_type).first()
+
+class Category(db.Model, BaseModelMixin):
+    __tablename__ = "categories"
+    id = Column(INTEGER, primary_key=True)
+    icons = Column(Text())
+    name = Column(Text())
+    member_id = Column(ForeignKey('members.id'))
+
+class Currency(db.Model, BaseModelMixin):
+    __tablename__= "currencies"
+    id = Column(INTEGER, primary_key=True)
+    symbol = Column(Text())
+    name = Column(Text())
+
+class Config(db.Model, BaseModelMixin):
+    __tablename__ = "configs"
+    id = Column(INTEGER, primary_key=True)
+    currency_default_id = Column(ForeignKey('currencies.id'))
+    member_id = Column(ForeignKey('members.id'))
+
+class Group(db.Model, BaseModelMixin):
+    __tablename__ = "groups"
+    id = Column(INTEGER, primary_key=True)
+    name = Column(Text())
+    description = Column(Text())
+
+class Member(db.Model, BaseModelMixin):
+    __tablename__ = "members"
+    id = Column(INTEGER, primary_key=True)
+    user_id = Column(ForeignKey('users.id'))
+    group_id = Column(ForeignKey('groups.id'))
+
+class Transaction(db.Model, BaseModelMixin):
+    __tablename__ = "transactions"
+    id = Column(INTEGER, primary_key=True)
+    type = Column(Text())
+    value = Column(INTEGER)
+    category_id = Column(ForeignKey('categories.id'))
+    currency_id = Column(ForeignKey('currencies.id'))
+    member_id = Column(ForeignKey('members.id'))
+

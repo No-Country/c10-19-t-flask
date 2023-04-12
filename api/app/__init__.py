@@ -1,10 +1,12 @@
 from flask import Flask, got_request_exception, jsonify
+from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from app.common.error_handling import InvalidAPIUsage, ObjectNotFound, AppErrorBaseClass
 from app.common.errors import custom_api_error_handler
 from app.db import db
 
 from app.modules.auth.v1.resources import *
+from app.modules.categories.v1.resources import categories_bp
 
 from app.ext import ma, migrate
 from flask_cors import CORS
@@ -17,6 +19,7 @@ def create_app(settings_module = 'config.local'):
    db.init_app(app)
    ma.init_app(app)
    migrate.init_app(app, db)
+   jwt = JWTManager(app)
    cors = CORS(app, resources={r'/*': {'origins':'*'}})
 
    # Captura todos los errores 404
@@ -26,7 +29,8 @@ def create_app(settings_module = 'config.local'):
    app.url_map.strict_slashes = False
 
    # Registra los blueprints
-   #app.register_blueprint(pixart)
+   app.register_blueprint(login)
+   app.register_blueprint(categories_bp)
 
    # Registra manejadores de errores personalizados
    if settings_module != 'config.local':

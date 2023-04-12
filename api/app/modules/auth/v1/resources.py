@@ -1,30 +1,45 @@
 from flask_jwt_extended import create_access_token
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource
+from marshmallow import ValidationError
 from app.modules.models import User #from app.models import User
 
 from flask import Blueprint, request
-from flask_restful import Resource
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
-from sqlalchemy.exc import SQLAlchemyError
 from datetime import timedelta
 import uuid
+from .schemas import UserSchema
 
 login = Blueprint('login', __name__)
 api = Api(login)
 
-parser = reqparse.RequestParser()
-parser.add_argument('email', help='This field cannot be blank', required=True)
-parser.add_argument('password', help='This field cannot be blank', required=True)
+user_schema = UserSchema()
 
 class Login(Resource):
     def post(self):
-        data = parser.parse_args()
-        user = User.find_by_email(data['email'])
-        if user and user.password == data['password']:
+        data = request.get_json()
+        try:
+            data = user_schema.load(data)
+        except ValidationError as err:
+            return {'error': err.messages}
+        user = User.find_by_email(data['email']) # type: ignore
+        if user and user.verify_password(data['password']): # type: ignore
             access_token = create_access_token(identity=user.id)
-            return {'access_token': access_token}, 200
+            return {'access_token': access_token, 'user': user_schema.dump(user)}, 200
         return {'message': 'Invalid credentials'}, 401
+
+class SignUp(Resource):
+    def post(self): 
+        data = request.get_json()
+        email = data.get('email')
+        password = data.get('password')
+
+        if email is None or password is None:
+            return {'message': 'parametros incorrectos'}, 401
+        user = User(email=email, password=password)
+        user.save()
+
+        return {'message': 'usuario creado con exito'}
 
 class SocialLogin(Resource):
     def post(self):
@@ -56,4 +71,5 @@ class SocialLogin(Resource):
             return {'message': 'Invalid token'}, 400
         
 api.add_resource(Login, '/api/v1/login', endpoint='login')
+api.add_resource(SignUp, '/api/v1/signup', endpoint='signup')
 api.add_resource(SocialLogin, '/api/v1/login/social', endpoint='socialLogin')
