@@ -30,6 +30,8 @@ class User(db.Model, BaseModelMixin):
     created_at = Column(db.DateTime, nullable=True )
     last_login = Column(db.DateTime, nullable=True)
 
+    groups = association_proxy("members", "group")
+
     @property
     def password(self):
         raise AttributeError("Can't read password")
@@ -74,11 +76,16 @@ class Group(db.Model, BaseModelMixin):
     name = Column(Text())
     description = Column(Text())
 
+    members = association_proxy("member", "user_id")
+
 class Member(db.Model, BaseModelMixin):
     __tablename__ = "members"
     id = Column(INTEGER, primary_key=True)
     user_id = Column(ForeignKey('users.id'))
     group_id = Column(ForeignKey('groups.id'))
+
+    user = db.relationship("User", backref=db.backref('members'))
+    group = db.relationship("Group", backref=db.backref('member'))
 
 class Transaction(db.Model, BaseModelMixin):
     __tablename__ = "transactions"

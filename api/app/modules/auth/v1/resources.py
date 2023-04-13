@@ -1,6 +1,7 @@
 from flask_jwt_extended import create_access_token
 from flask_restful import Api, Resource
 from marshmallow import ValidationError
+from app.modules.members.v1.schemas import UserSchema
 from app.modules.models import User #from app.models import User
 
 from flask import Blueprint, request
@@ -8,7 +9,7 @@ from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
 from datetime import timedelta
 import uuid
-from .schemas import UserSchema
+
 
 login = Blueprint('login', __name__)
 api = Api(login)
