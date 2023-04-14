@@ -16,16 +16,16 @@ class User(db.Model, BaseModelMixin):
         String(255), default=lambda: str(uuid.uuid4()), nullable=False
     )
     
-    social_id = Column(Text(), nullable=True, unique=True)
-    social_type = Column(Text())
+    social_id = Column(String(255), nullable=True, unique=True)
+    social_type = Column(String(255))
     activated = Column(BOOLEAN, default=False, nullable=False) # type: ignore
 
     # When the user chooses to set up an account directly with the app.
-    _password = Column(Text())
+    _password = Column(String(255))
 
-    fullname = Column(Text(), nullable=True)
-    email = Column(Text(), nullable=True)
-    picture = Column(Text(), nullable=True)
+    fullname = Column(String(255), nullable=True)
+    email = Column(String(255), nullable=True)
+    picture = Column(String(255), nullable=True)
 
     created_at = Column(db.DateTime, nullable=True )
     last_login = Column(db.DateTime, nullable=True)
@@ -54,15 +54,15 @@ class User(db.Model, BaseModelMixin):
 class Category(db.Model, BaseModelMixin):
     __tablename__ = "categories"
     id = Column(INTEGER, primary_key=True)
-    icons = Column(Text())
-    name = Column(Text())
+    icons = Column(String(255))
+    name = Column(String(255))
     member_id = Column(ForeignKey('members.id'))
 
 class Currency(db.Model, BaseModelMixin):
     __tablename__= "currencies"
     id = Column(INTEGER, primary_key=True)
-    symbol = Column(Text())
-    name = Column(Text())
+    symbol = Column(String(255))
+    name = Column(String(255))
 
 class Config(db.Model, BaseModelMixin):
     __tablename__ = "configs"
@@ -73,8 +73,8 @@ class Config(db.Model, BaseModelMixin):
 class Group(db.Model, BaseModelMixin):
     __tablename__ = "groups"
     id = Column(INTEGER, primary_key=True)
-    name = Column(Text())
-    description = Column(Text())
+    name = Column(String(255))
+    description = Column(String(255))
 
     members = association_proxy("member", "user_id")
 
@@ -90,7 +90,7 @@ class Member(db.Model, BaseModelMixin):
 class Transaction(db.Model, BaseModelMixin):
     __tablename__ = "transactions"
     id = Column(INTEGER, primary_key=True)
-    type = Column(Text())
+    type = Column(String(255))
     value = Column(INTEGER)
     category_id = Column(ForeignKey('categories.id'))
     currency_id = Column(ForeignKey('currencies.id'))
