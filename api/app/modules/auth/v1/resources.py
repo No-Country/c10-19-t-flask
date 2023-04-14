@@ -10,7 +10,6 @@ from google.auth.transport import requests as google_requests
 from datetime import timedelta
 import uuid
 
-
 login = Blueprint('login', __name__)
 api = Api(login)
 
@@ -37,7 +36,7 @@ class SignUp(Resource):
 
         if email is None or password is None:
             return {'message': 'parametros incorrectos'}, 401
-        user = User(email=email, password=password)
+        user = User(email=email, password=password) # type: ignore
         user.save()
 
         return {'message': 'usuario creado con exito'}
