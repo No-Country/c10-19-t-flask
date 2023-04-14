@@ -1,3 +1,4 @@
+import os
 from flask import Flask, got_request_exception, jsonify
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
@@ -12,7 +13,10 @@ from app.modules.members.v1.resources import members_bp
 from app.ext import ma, migrate
 from flask_cors import CORS
 
-def create_app(settings_module = 'config.local'):
+SETTINGS_DEFAULT = os.getenv('APP_SETTINGS_MODULE')
+
+def create_app(settings_module = SETTINGS_DEFAULT):
+   
    app = Flask(__name__)
    app.config.from_object(settings_module)
    
