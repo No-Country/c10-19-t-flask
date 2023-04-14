@@ -76,7 +76,7 @@ class Group(db.Model, BaseModelMixin):
     name = Column(String(255))
     description = Column(String(255))
 
-    members = association_proxy("member", "user_id")
+    members = association_proxy("member", "user")
 
 class Member(db.Model, BaseModelMixin):
     __tablename__ = "members"

@@ -1,9 +1,9 @@
 from marshmallow import EXCLUDE, Schema, fields
 
 class GroupSchema(Schema):
-
+    members = fields.List(fields.Nested(lambda: UserSchema(only=('id', 'fullname'))))
     class Meta:
-        additional = ('id', 'description', 'name', 'members')
+        additional = ('id', 'description', 'name')
         unknown = EXCLUDE
         ordered = True
 
