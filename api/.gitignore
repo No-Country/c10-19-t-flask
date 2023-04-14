@@ -9,6 +9,9 @@ __pycache__/
 # WSGI Extension
 *.wsgi
 
+# Migrations
+migrations/
+
 # Distribution / packaging
 .Python
 build/
