@@ -23,7 +23,7 @@ class UserSchema(Schema):
 
 class MemberSchema(Schema):
     user = fields.Nested(UserSchema)
-    group = fields.Nested(GroupSchema)
+    group = fields.Nested(GroupSchema, exclude=('members',))
 
     class Meta:
         additional = ('id','user_id','group_id')

@@ -19,7 +19,7 @@ class Groups(Resource):
 
         return {
             'message': str(len(user.groups))+' groups founds for this user',
-            'data': GroupSchema().dump(user.groups, many=True)
+            'data': GroupSchema(exclude=('members',)).dump(user.groups, many=True)
         }
     
     def post(self, user_id):
