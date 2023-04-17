@@ -83,6 +83,7 @@ class Member(db.Model, BaseModelMixin):
     id = Column(INTEGER, primary_key=True)
     user_id = Column(ForeignKey('users.id'))
     group_id = Column(ForeignKey('groups.id'))
+    active = Column(BOOLEAN)
 
     user = db.relationship("User", backref=db.backref('members'))
     group = db.relationship("Group", backref=db.backref('member'))
