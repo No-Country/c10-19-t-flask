@@ -2,8 +2,7 @@ from flask_jwt_extended import create_access_token
 from flask_restful import Api, Resource
 from marshmallow import ValidationError
 from app.modules.members.v1.schemas import UserSchema
-from app.modules.models import User #from app.models import User
-
+from app.modules.models import Group, Member, User #from app.models import User
 from flask import Blueprint, request
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
@@ -34,15 +33,29 @@ class Login(Resource):
 class SignUp(Resource):
     def post(self): 
         data = request.get_json()
-        email = data.get('email')
-        password = data.get('password')
+        try:
+            data = user_schema.load(data)
 
-        if email is None or password is None:
-            return {'message': 'parametros incorrectos'}, 401
-        data_format = user_schema.load(data)
-        user = User(**data_format) # type: ignore
-        user.save()
+            email = data.get('email') # type: ignore
+            password = data.get('password') # type: ignore
 
+            if email is None or password is None:
+                raise ValueError('Invalid credentials')
+            if User().find_by_email(email):
+                raise ValueError('User with email already exist')
+            user = User(**data) # type: ignore
+            user.save()
+
+        except ValidationError as err:
+            return {'message': err.messages}, 401
+        except ValueError as err:
+            return {'message': err.__repr__()}, 401
+        
+        group = Group(name='House', description=f'House group for user {user.id}')
+        group.save()
+        member_group = Member(group_id=group.id, user_id=user.id)
+        member_group.save()
+        
         return {'message': 'usuario creado con exito'}
 
 class SocialLogin(Resource):
