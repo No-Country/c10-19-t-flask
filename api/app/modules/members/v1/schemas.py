@@ -9,6 +9,7 @@ class GroupSchema(Schema):
 
 class UserSchema(Schema):
     id = fields.Str() 
+    external_id = fields.Str()
     email = fields.Email()
     social_id = fields.Str()
     social_type = fields.Str()

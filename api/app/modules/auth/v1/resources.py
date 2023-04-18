@@ -7,7 +7,7 @@ from app.modules.models import User #from app.models import User
 from flask import Blueprint, request
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
-from datetime import timedelta
+from datetime import datetime, timedelta
 import uuid
 
 login = Blueprint('login', __name__)
@@ -25,6 +25,9 @@ class Login(Resource):
         user = User.find_by_email(data['email']) # type: ignore
         if user and user.verify_password(data['password']): # type: ignore
             access_token = create_access_token(identity=user.id)
+            user.last_login = datetime.now()
+            user.last_token = access_token
+            user.save()
             return {'access_token': access_token, 'user': user_schema.dump(user)}, 200
         return {'message': 'Invalid credentials'}, 401
 
@@ -36,7 +39,8 @@ class SignUp(Resource):
 
         if email is None or password is None:
             return {'message': 'parametros incorrectos'}, 401
-        user = User(email=email, password=password) # type: ignore
+        data_format = user_schema.load(data)
+        user = User(**data_format) # type: ignore
         user.save()
 
         return {'message': 'usuario creado con exito'}

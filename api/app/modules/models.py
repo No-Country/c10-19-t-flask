@@ -1,3 +1,4 @@
+from datetime import datetime
 import uuid
 from sqlalchemy import BOOLEAN, INTEGER, Column, ForeignKey, String, Text
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,7 +14,7 @@ class User(db.Model, BaseModelMixin):
     
     # An ID to use as a reference when sending email.
     external_id = Column(
-        String(255), default=lambda: str(uuid.uuid4()), nullable=False
+        String(255), default=lambda: str(uuid.uuid4()), nullable=False, unique=True
     )
     
     social_id = Column(String(255), nullable=True, unique=True)
@@ -23,12 +24,13 @@ class User(db.Model, BaseModelMixin):
     # When the user chooses to set up an account directly with the app.
     _password = Column(String(255))
 
-    fullname = Column(String(255), nullable=True)
-    email = Column(String(255), nullable=True)
+    fullname = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=True, unique=True)
     picture = Column(String(255), nullable=True)
 
-    created_at = Column(db.DateTime, nullable=True )
+    created_at = Column(db.DateTime, default=lambda: datetime.now(), nullable=True)
     last_login = Column(db.DateTime, nullable=True)
+    last_token = Column(Text, nullable=True)
 
     groups = association_proxy("members", "group")
 
