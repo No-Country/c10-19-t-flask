@@ -10,7 +10,7 @@ api = Api(categories_bp)
 category_schema = CategorySchema()
 
 class Categories(Resource):
-    def get(self, member_id):
+    def get(self):
         category = Category()
         categories = category.get_all()
         return {
