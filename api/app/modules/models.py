@@ -95,6 +95,7 @@ class Transaction(db.Model, BaseModelMixin):
     id = Column(INTEGER, primary_key=True)
     type = Column(String(255))
     value = Column(INTEGER)
+    date = Column(db.DateTime)
     category_id = Column(ForeignKey('categories.id'))
     currency_id = Column(ForeignKey('currencies.id'))
     user_id = Column(ForeignKey('users.id'))
