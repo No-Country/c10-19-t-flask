@@ -17,6 +17,7 @@ class Transactions(Resource):
             return {
                 'message': 'User Invalid'
             }
+        
         data['user_id'] = user.id
         member_schema = MemberSchema(only=('user_id', 'group_id')).load(data)
         member = Member.simple_filter(**member_schema) # type: ignore
@@ -24,7 +25,7 @@ class Transactions(Resource):
             return {
                 'message': 'Parameters are not valid'
             }, 400
-        data['member_id'] = member.id
+        
         data = TransactionSchema().load(data)
         transaction = Transaction(**data)
         transaction.save()
@@ -33,17 +34,15 @@ class Transactions(Resource):
             'data': TransactionSchema().dump(transaction)
         }
 
-    def get(self, user_id, group_id):
+    def get(self, user_id):
         user = User.simple_filter(external_id=user_id)
         if not user:
             return {
                 'message': 'User Invalid'
             }
         
-        data = {
-            'user_id': user.id,
-            'group_id': group_id
-            }
+        data = request.args.to_dict()
+        data[user_id] = user.id
         
         member_schema = MemberSchema(only=('user_id', 'group_id')).load(data)
         member = Member.simple_filter(**member_schema) # type: ignore
@@ -51,6 +50,13 @@ class Transactions(Resource):
             return {
                 'message': 'Parameters are not valid'
             }, 400
+        
+        transactions = Transaction.simple_filter_all(group_id=data['group_id'])
+
+        return {
+            'message': f'{str(len(transactions))} founds for this group',
+            'data': TransactionSchema().dump(transactions, many=True)
+        }
 
     def put(self):
         pass
