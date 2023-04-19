@@ -41,7 +41,13 @@ class Groups(Resource):
 
 class GroupResource(Resource):
     def get(self, user_id,  group_id):
-        member = Member.simple_filter(user_id=user_id, group_id=group_id)
+        user = User.simple_filter(external_id=user_id)
+        if not user:
+            return {
+                'message': 'User Invalid'
+            }
+        
+        member = Member.simple_filter(user_id=user.id, group_id=group_id)
         if not member:
             return {
                 'message': 'Parameters are not valid'
@@ -54,14 +60,21 @@ class GroupResource(Resource):
         }
     
     def post(self, user_id, group_id):
-        member = Member.simple_filter(user_id=user_id, group_id=group_id)
+
+        user = User.simple_filter(external_id=user_id)
+        if not user:
+            return {
+                'message': 'User Invalid'
+            }
+        
+        member = Member.simple_filter(user_id=user.id, group_id=group_id)
         if not member:
             return {
                 'message': 'Parameters are not valid'
             }, 400
         
         data = request.get_json()
-        data_format = MemberSchema().dump({'user_id': data['invited_member'], 'group_id': group_id, 'active': False})
+        data_format = MemberSchema().dump({'user_id': data['invited_member'], 'group_id': group_id, 'active': True})
         member_group = Member(**data_format)
         member_group.save()
 
