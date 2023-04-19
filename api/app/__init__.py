@@ -9,6 +9,7 @@ from app.db import db
 from app.modules.auth.v1.resources import *
 from app.modules.categories.v1.resources import categories_bp
 from app.modules.members.v1.resources import members_bp
+from app.modules.transactions.v1.resources import transaction_bp
 
 from app.ext import ma, migrate
 from flask_cors import CORS
@@ -37,6 +38,7 @@ def create_app(settings_module = SETTINGS_DEFAULT):
    app.register_blueprint(login)
    app.register_blueprint(members_bp)
    app.register_blueprint(categories_bp)
+   app.register_blueprint(transaction_bp)
 
    # Registra manejadores de errores personalizados
    if settings_module != 'config.local':

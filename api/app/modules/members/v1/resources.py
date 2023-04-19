@@ -48,7 +48,6 @@ class GroupResource(Resource):
             }, 400
         
         members = Member.simple_filter_all(group_id=group_id)
-        print(members)
         return {
             'message': 'Request Success',
             'data': MemberSchema(only=('id','user')).dump(members, many=True)
