@@ -3,7 +3,7 @@ import logging
 from flask import make_response, g, abort, request
 from flask_restful import Resource, wraps
 
-from common.error_handling import AuthError
+from app.common.error_handling import AuthError
 from app.modules.models import User
 
 def get_token_auth_header():
