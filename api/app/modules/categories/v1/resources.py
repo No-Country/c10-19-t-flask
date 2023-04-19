@@ -13,8 +13,9 @@ class Categories(Resource):
     def get(self):
         category = Category()
         categories = category.get_all()
+        print(categories)
         return {
-            'message': str(len(categories))+' categories founds for this member',
+            'message': str(len(categories))+' categories founds',
             'data': category_schema.dump(categories, many=True)
         }
     

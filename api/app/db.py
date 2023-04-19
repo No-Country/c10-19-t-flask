@@ -23,18 +23,12 @@ class BaseModelMixin:
     @classmethod
     def get_all(cls, limit = None, page = None):
         query = cls.query # type: ignore
-        headers = {
-            'x-count': query.count(),
-        }
         if limit is not None:
             query = query.limit(limit)
-            headers['x-limit'] = limit
         if page is not None:
             query = query.offset(int(page)*int(limit)) # type: ignore
-            headers['x-page'] = page
-            headers['x-total-pages'] = (int(headers['x-count']) // int(limit))+1 # type: ignore
 
-        return query.all(), 201, headers
+        return query.all()
 
     @classmethod
     def get_by_id(cls, id):
