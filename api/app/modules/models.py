@@ -97,5 +97,5 @@ class Transaction(db.Model, BaseModelMixin):
     value = Column(INTEGER)
     category_id = Column(ForeignKey('categories.id'))
     currency_id = Column(ForeignKey('currencies.id'))
-    member_id = Column(ForeignKey('members.id'))
+    group_id = Column(ForeignKey('members.id'))
 
