@@ -56,7 +56,7 @@ class GroupResource(Resource):
         members = Member.simple_filter_all(group_id=group_id)
         return {
             'message': 'Request Success',
-            'data': MemberSchema(only=('id','user')).dump(members, many=True)
+            'data': MemberSchema(only=('user',)).dump(members, many=True)
         }
     
     def post(self, user_id, group_id):

@@ -22,7 +22,7 @@ class UserSchema(Schema):
     groups = fields.Nested(GroupSchema, many=True, exclude=('members',))
 
 class MemberSchema(Schema):
-    user = fields.Nested(UserSchema, only=('fullname', 'last_login'))
+    user = fields.Nested(UserSchema, only=('fullname', 'external_id'))
     group = fields.Nested(GroupSchema, exclude=('members','id'))
 
     class Meta:
