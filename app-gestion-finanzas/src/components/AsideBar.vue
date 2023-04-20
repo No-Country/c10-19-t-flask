@@ -1,12 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
 
-
-
+const listGroups = ref([])
+const groups = JSON.parse(sessionStorage.getItem('user')).user.groups
+console.log(groups)
+listGroups.value = groups
 
 </script>
-
-
 <template>
     
     <aside class="p-1 float-md-start d-none vh-100 d-md-block bg-light shadow border border-start-0 d-inline-block p3" >
@@ -32,21 +32,14 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <aside class="p-1 d-md-none d-sm-block bg-light shadow border border-start-0 d-inline-block p3 vw-100" >
         <div class="container-fluid">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Groups
-  </button>
-        <ul class="navbar-nav me-auto d-flex flex-row justify-content-between p-3 dropdown-menu">
-                <!--<li >Months</li>
-                <RouterLink to="/addnewgroup" class="nav-link active" aria-current="page">
-                    <li>New Group</li>
-                </RouterLink>-->
-        
-    
-            <li class="p-3 fs-6">Grupo 1</li>
-        
-        </ul>
-        </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        GRUPOS
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" v-for="group in listGroups" :key="group.id">
+                    <li><a class="dropdown-item" href="#">{{ group.name }}</a></li>
+                </ul>
+            </div>
         </div>
     </aside>
 

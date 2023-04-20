@@ -1,9 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
-
-</script>
-
 <template>
   
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
