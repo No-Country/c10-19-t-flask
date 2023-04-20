@@ -60,7 +60,6 @@ class GroupResource(Resource):
         }
     
     def post(self, user_id, group_id):
-
         user = User.simple_filter(external_id=user_id)
         if not user:
             return {
@@ -74,9 +73,23 @@ class GroupResource(Resource):
             }, 400
         
         data = request.get_json()
-        data_format = MemberSchema().dump({'user_id': data['invited_member'], 'group_id': group_id, 'active': True})
+        user_invited = User.find_by_email(data.get('email', None))
+        if not user_invited:
+            return {
+                'message': 'User Invited is not valid'
+            }
+        member = Member.simple_filter(user_id=user_invited.id, group_id=group_id)
+        if member:
+            return {
+                'message': 'Invited user already exist in group'
+            }, 400
+        data_format = MemberSchema().dump({'user_id': user_invited.id, 'group_id': group_id, 'active': True})
         member_group = Member(**data_format)
         member_group.save()
+        return {
+            'message': 'succes',
+            'data': MemberSchema(only=('id','user')).dump(Member.simple_filter_all(group_id=group_id), many=True)
+        }
 
 api.add_resource(Groups, '/api/v1/<user_id>/groups') # Crea nuevo grupo para determinado usuario
 api.add_resource(GroupResource, '/api/v1/<user_id>/group/<group_id>/members') # Consulta los miembros de un grupo determinado o agrega miembros al grupo
