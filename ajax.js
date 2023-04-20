@@ -44,3 +44,18 @@ async function login(){
     localStorage.setItem('token', response['access_token'])
     return response.data
 }
+
+import { ref } from 'vue';
+
+const listItems = ref([]);
+
+const data = JSON.parse(sessionStorage.getItem('user'))
+const user = data.user
+
+async function getData() {
+  const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user.id}/transaction?group_id=${user.groups[0].id}`);
+  const finalRes = await res.json();
+  listItems.value = finalRes;
+}
+
+getData()
