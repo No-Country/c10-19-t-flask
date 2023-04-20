@@ -10,7 +10,7 @@ import { ref } from 'vue'
 
 const transactions = ref([])
 
-
+console.log()
 const user = JSON.parse(sessionStorage.getItem("user"))
 console.log(user)
 const group_id = user.user.groups[0].id
@@ -20,13 +20,18 @@ console.log(user_id)
 
 async function getData(){
         const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction`+`?group_id=${group_id}`);
-        const finalRes = await res.json();
+        let finalRes = await res.json();
+        console.log(finalRes)
+        finalRes = finalRes.data.sort(function(a, b) {
+          let keyA = new Date(a.date);
+          let keyB = new Date(b.date);
+          // Compare the 2 dates
+          if (keyA > keyB) return -1;
+          if (keyA < keyB) return 1;
+          return 0;
+        });
+        // finalRes = finalRes.map(element => element.user = element.user.fullname);
         transactions.value = finalRes;
-        // .then(response => response.json())
-        // .then(data => {
-        //   transactions.data = data
-        // })
-        // .catch(error => console.log('error', error));
       }
 
 console.log(transactions)
@@ -70,11 +75,14 @@ getData()
   <div class="col text-center">
     <p class="h1">Transactions</p>
   </div>
-  <div class="row justify-content-center mt-5" v-for="transaction in transactions.data" :key="transaction.id">
+  <div class="row justify-content-center mt-5" v-for="transaction in transactions" :key="transaction.id">
   <div class="col-3">
     <p class="h3">{{ transaction.date }}</p>
   </div>
-  <div class="col-6 text-center">
+  <div class="col-3 text-center">
+    <p class="h3">{{ transaction.user.fullname }}</p>
+  </div>
+  <div class="col-3 text-center">
     <p class="h3">{{ transaction.category_id }}</p>
   </div>
   <div class="col-3 text-end">

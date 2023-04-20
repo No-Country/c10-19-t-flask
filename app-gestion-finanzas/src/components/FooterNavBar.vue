@@ -21,14 +21,14 @@ import AddExpending from '../views/AddExpendingView.vue'
             <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text fs-5"></i></RouterLink>
             <RouterLink to="/transactions" class="nav-link active " aria-current="page">Transactions</RouterLink>
           </li>
-          <li class="nav-item text-center">
+          <!-- <li class="nav-item text-center">
             <RouterLink to="/categories" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1 fs-5"></i></RouterLink>
             <RouterLink to="/categories" class="nav-link active " aria-current="page">Categories</RouterLink>
           </li>
           <li class="nav-item text-center">
             <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1 fs-5"></i></RouterLink>
             <RouterLink to="/about" class="nav-link active " aria-current="page">overview</RouterLink>
-          </li>
+          </li> -->
           <!-- <li class="nav-item text-center">
             <RouterLink to="/about" class="nav-link active " aria-current="page"><i class="bi bi-three-dots-vertical p-1 fs-5"></i></RouterLink>
             <RouterLink to="/about" class="nav-link active " aria-current="page">menu</RouterLink>

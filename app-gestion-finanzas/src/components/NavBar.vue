@@ -12,18 +12,18 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="">
           <div class="navbar navbar-expand d-flex p-2 " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item p-2">
+              <!-- <li class="nav-item p-2">
                 <RouterLink to="/" class="nav-link active " aria-current="page">temporary home</RouterLink>
-              </li>
+              </li> -->
               <li class="nav-item p-2">
                 <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text"></i>Transactions</RouterLink>
               </li>
-              <li class="nav-item p-2">
+              <!-- <li class="nav-item p-2">
                 <RouterLink to="/categories" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1"></i>Categories</RouterLink>
-              </li>
-              <li class="nav-item p-2">
+              </li> -->
+              <!-- <li class="nav-item p-2">
                 <RouterLink to="/login" class="nav-link active " aria-current="page"><i class="bi bi-three-dots-vertical p-1"></i>Menu</RouterLink>
-              </li>
+              </li> -->
           
             </ul>
           </div>

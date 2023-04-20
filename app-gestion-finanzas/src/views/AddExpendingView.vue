@@ -13,7 +13,7 @@ const options= [
   {"id": 3, "icons": null, "name": "GIFT"}, 
   {"id": 4, "icons": null, "name": "HOUSE"}, 
   {"id": 5, "icons": null, "name": "BILLS"}, 
-  {"id": 6, "icons": null, "name": "HEALTH"}]
+  {"id": 6, "icons": null, "name": "HEALTH"}];
 
 
 console.log(options)
@@ -51,8 +51,7 @@ const submitExpending = () => {
   fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction/`, requestOptions)
     .then(response => response.json())
     .then(result => console.log(result))
-    .then((response) => {
-            sessionStorage.setItem("user", response)
+    .then(() => {
             router.replace({ name: "transactions", path: "/transactions" });
         })
     .catch(error => console.log('error', error));
