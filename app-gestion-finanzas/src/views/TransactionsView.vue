@@ -95,10 +95,10 @@ getData()
       </div>
     </template>  
   </div>
-  <div class="row m-3">
+  <div class="row m-md-3 me-1">
   <h2 class="text-center">Transactions</h2>
-  <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-center align-items-center" v-for="transaction in transactions" :key="transaction.id">
+  <ul class="list-group ms-3">
+    <li class="list-group-item shadow d-flex justify-content-center align-items-center" v-for="transaction in transactions" :key="transaction.id">
       <div class="fs-4 fw-bold me-3">{{ transaction.date }}</div>
       <div class="ms-2 me-auto">
         <div class="fw-bold">{{ transaction.category.name}}</div>
@@ -108,25 +108,6 @@ getData()
     </li>
   </ul>
   </div>
-<!-- <div class="row justify-content-center align-items-center mt-4">
-  <div class="col text-center">
-    <p class="h1">Transactions</p>
-  </div>
-  <div class="row justify-content-center mt-3" >
-  <div class="col-1">
-    <p class="h3">{{ transaction.date }}</p>
-  </div>
-  <div class="col-5 text-center">
-    <p class="h3">{{ transaction.user.fullname }}</p>
-  </div>
-  <div class="col-2 text-center">
-    <p class="h3">{{ transaction.category.name}}</p>
-  </div>
-  <div class="col-4 text-end">
-    <p class="text-end h3">$ {{ transaction.value }}</p>
-  </div>
-</div>
-</div> -->
 </div>
 
 <footer>
