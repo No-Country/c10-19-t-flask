@@ -2,32 +2,16 @@
 import NavBar from '../components/NavBar.vue'
 import FooterNavBar from '../components/FooterNavBar.vue'
 import AsideNavBar from '../components/AsideBar.vue'
-import {RouterLink} from 'vue-router'
 import { useRouter } from "vue-router";
+import { ref } from 'vue'
 
 const router = useRouter();
 
-const options= [
-  {"id": 1, "icons": null, "name": "PET"}, 
-  {"id": 2, "icons": null, "name": "CARS"}, 
-  {"id": 3, "icons": null, "name": "GIFT"}, 
-  {"id": 4, "icons": null, "name": "HOUSE"}, 
-  {"id": 5, "icons": null, "name": "BILLS"}, 
-  {"id": 6, "icons": null, "name": "HEALTH"}];
-
-
-console.log(options)
-const data = {
-  selectOptions: "",
-  options: options
-};
+const options = ref([])
 
 const user = JSON.parse(sessionStorage.getItem("user"))
-console.log(user)
 const group_id = user.user.groups[0].id
-console.log(group_id)
 const user_id = user.user.id
-console.log(user_id)
 
 const expending = {
     type: "SPEND",
@@ -35,7 +19,6 @@ const expending = {
     category_id: undefined,
     group_id: group_id,
     date: undefined
-
 }
 
 const submitExpending = () => {
@@ -50,15 +33,20 @@ const submitExpending = () => {
   
   fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction/`, requestOptions)
     .then(response => response.json())
-    .then(result => console.log(result))
     .then(() => {
             router.replace({ name: "transactions", path: "/transactions" });
         })
     .catch(error => console.log('error', error));
 };
 
-  
+async function getCategories(){
+  const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/categories`);
+  const finalRes = await res.json();
+  localStorage.setItem('categories', finalRes.data)
+  options.value = finalRes.data
+}
 
+getCategories()
 </script>
 
 <template>

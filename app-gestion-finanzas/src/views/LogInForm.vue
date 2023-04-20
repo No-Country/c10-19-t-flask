@@ -1,6 +1,4 @@
 <script setup>
-import NavBar from '../components/NavBar.vue'
-import {RouterLink, createRouterMatcher, routerKey} from 'vue-router'
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -84,19 +82,19 @@ const login = () => {
 
       <div class="mb-2">
         <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary col-10 shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
+          <button type="button" class="btn btn-primary col-10 shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
         </div>
       </div>
 
       <div class="mb-2">
         <div class="row justify-content-center">
-          <button type="submit" class="btn btn-danger col-10 shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
+          <button type="button" class="btn btn-danger col-10 shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
         </div>
       </div>
 
       <div class="mb-2">
         <div class="row justify-content-center">
-          <button type="submit" class="btn btn-light col-10 shadow rounded border border-secondary mt-4 p-3 mt-sm-2"><RouterLink to="/singup" class="nav-link active" aria-current="page">Sing up with E-mail</RouterLink></button>
+          <button type="button" class="btn btn-light col-10 shadow rounded border border-secondary mt-4 p-3 mt-sm-2"><RouterLink to="/singup" class="nav-link active" aria-current="page">Sing up with E-mail</RouterLink></button>
         </div>
       </div>
       

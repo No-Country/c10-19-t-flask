@@ -3,39 +3,59 @@
 import NavBar from '../components/NavBar.vue'
 import FooterNavBar from '../components/FooterNavBar.vue'
 import AsideNavBar from '../components/AsideBar.vue'
-import {RouterLink} from 'vue-router'
-import ChildComps from '../views/AddExpendingView.vue'
 import { ref } from 'vue'
+import moment from 'moment'
 
 
 const transactions = ref([])
+const persons = ref([])
 
-console.log()
 const user = JSON.parse(sessionStorage.getItem("user"))
-console.log(user)
 const group_id = user.user.groups[0].id
-console.log(group_id)
 const user_id = user.user.id
-console.log(user_id)
+const user_fullname = user.user.fullname
+const user_totals = ref("***")
+
+const total_transactions = ref("***")
 
 async function getData(){
-        const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction`+`?group_id=${group_id}`);
-        let finalRes = await res.json();
-        console.log(finalRes)
-        finalRes = finalRes.data.sort(function(a, b) {
-          let keyA = new Date(a.date);
-          let keyB = new Date(b.date);
-          // Compare the 2 dates
-          if (keyA > keyB) return -1;
-          if (keyA < keyB) return 1;
-          return 0;
-        });
-        // finalRes = finalRes.map(element => element.user = element.user.fullname);
-        transactions.value = finalRes;
-      }
+  const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction`+`?group_id=${group_id}`);
+  let finalRes = await res.json();
+  finalRes = finalRes.data.sort(function(a, b) {
+    let keyA = new Date(a.date);
+    let keyB = new Date(b.date);
+    // Compare the 2 dates
+    if (keyA > keyB) return -1;
+    if (keyA < keyB) return 1;
+    return 0;
+  });
+  finalRes = finalRes.map(objeto => ({
+  ...objeto, // copiamos el objeto completo
+  date: moment(objeto.date, 'YYYY-MM-DDTHH:mm:ss').format('DD/MM') // formateamos la fecha y la asignamos al atributo date del nuevo objeto
+}));
+  user_totals.value = finalRes.filter(transaction => transaction.user.id == user_id).reduce((sum, tr) => {
+          sum = sum + tr.value
+          return sum
+        }, 0)
+  total_transactions.value = finalRes.reduce((sum, tr) => sum + tr.value, 0)
+  transactions.value = finalRes;
+}
 
-console.log(transactions)
+async function checkPersonInGroups(){
+  const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/group/${group_id}/members`);
+  let finalRes = await res.json();
+  finalRes = finalRes.data.reduce((users, user_group) => {
+    const fullname = user_group.user.fullname
+    const id = user_group.user.id
+    if (id != user_id){
+      users.push({fullname: fullname, id: id})
+    }
+    return users
+  }, [])
+  persons.value = finalRes
+}
 
+checkPersonInGroups()
 getData()
 </script>
 
@@ -44,52 +64,69 @@ getData()
 <header>
     
     <NavBar class="sticky-top bg-body-tertiary d-none d-md-block"/>
-               
-  </header>
+    <AsideNavBar />         
+</header>
   
-   
-      <AsideNavBar />
-    
- 
-  
-<div class="container">
-<div class="row row-cols-2 g-3 justify-content-evenly">
-    <div class="col-12 text-center rounded-4 bg-primary p-3 shadow-color border border-3 border-light">
-      <h1>Total</h1>
-      <h2>$12000</h2>
-    </div>
+<div class="container-fluid">
 
-    <div class="col-5 col-lg-5 text-center rounded-4 bg-danger border border-3 border-light pt-3 pb-3  shadow-color  ">
-        <Text class="fs-3">persona-1</text><br/>
-        <text class="fs-3 fw-medium">$100000000</text>
+  <div class="row align-items-center justify-content-center">
+      <div class="col m-2 g-2 p-2 text-center rounded-4 bg-primary p-3 shadow-color border border-3 border-light">
+        <h1>Total</h1>
+        <h2>$ {{ total_transactions }}</h2>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col m-2 text-center rounded-4 bg-danger border border-3 border-light pt-3 pb-3  shadow-color  ">
+        <Text class="fs-3">{{ user_fullname }}</text><br/>
+        <text class="fs-3 fw-medium">$ {{ user_totals }}</text>
     </div>
-    <div class="col-5 col-lg-5 text-center rounded-4 bg-warning border border-3 border-light pt-3 pb-3 shadow-color">
-      <text class="fs-3">persona 2</text><br/>
-      <h2 class="fs-3 fw-medium">$2000</h2>
-    </div>
-  
-    
-</div>
-
-<div class="row justify-content-center mt-4 g-5">
+    <template v-for="person in persons" :key="person.id">
+      <div class="col m-2 text-center rounded-4 bg-warning border border-3 border-light pt-3 pb-3 shadow-color">
+        <text class="fs-3">{{ person.fullname }}</text><br/>
+        <h2 class="fs-3 fw-medium">$ {{ transactions.filter(transaction => transaction.user.id == person.id).reduce((sum, tr) => {
+          sum = sum + tr.value
+          return sum
+        }, 0) }}</h2>
+      </div>
+    </template>
+    <template v-if="persons.length == 0">
+      <div class="col m-2 d-flex align-items-center justify-content-center text-center rounded-4 border border-3 border-light pt-3 pb-3 shadow-color">
+        <RouterLink to="/addmember" class="nav-link active" aria-current="page"><i class="bi bi-plus-circle-fill text-success" style="font-size: 2rem;"></i><p class="m-0">Add Person</p></RouterLink>
+      </div>
+    </template>  
+  </div>
+  <div class="row m-3">
+  <h2 class="text-center">Transactions</h2>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-center align-items-center" v-for="transaction in transactions" :key="transaction.id">
+      <div class="fs-4 fw-bold me-3">{{ transaction.date }}</div>
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ transaction.category.name}}</div>
+        {{ transaction.user.fullname }}
+      </div>
+      <div class="fs-4 fw-bold">$ {{ transaction.value }}</div>
+    </li>
+  </ul>
+  </div>
+<!-- <div class="row justify-content-center align-items-center mt-4">
   <div class="col text-center">
     <p class="h1">Transactions</p>
   </div>
-  <div class="row justify-content-center mt-5" v-for="transaction in transactions" :key="transaction.id">
-  <div class="col-3">
+  <div class="row justify-content-center mt-3" >
+  <div class="col-1">
     <p class="h3">{{ transaction.date }}</p>
   </div>
-  <div class="col-3 text-center">
+  <div class="col-5 text-center">
     <p class="h3">{{ transaction.user.fullname }}</p>
   </div>
-  <div class="col-3 text-center">
-    <p class="h3">{{ transaction.category_id }}</p>
+  <div class="col-2 text-center">
+    <p class="h3">{{ transaction.category.name}}</p>
   </div>
-  <div class="col-3 text-end">
-    <p class="text-end h3">{{ transaction.value }}</p>
+  <div class="col-4 text-end">
+    <p class="text-end h3">$ {{ transaction.value }}</p>
   </div>
 </div>
-</div>
+</div> -->
 </div>
 
 <footer>
