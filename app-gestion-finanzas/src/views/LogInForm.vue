@@ -27,8 +27,10 @@ const login = () => {
             const groups = response.user.groups
             if (groups.length > 1){
               router.replace({ name: "selectgroup", path: "/selectgroup" });
+            } else {
+              localStorage.setItem('group_id', groups[0].id)
+              router.replace({ name: "transactions", path: "/transactions" });
             }
-            router.replace({ name: "transactions", path: "/transactions" });
         })
     .catch(error => console.log('error', error));
    

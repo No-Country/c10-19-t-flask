@@ -7,11 +7,12 @@ import { ref } from 'vue'
 
 const router = useRouter();
 
-
 const user = JSON.parse(sessionStorage.getItem("user"))
-const user_id = user.user.id
 const groups = ref(user.user.groups)
-
+const selectGroup = (group_id) => {
+  localStorage.setItem('group_id', group_id)
+  router.replace({ name: "transactions", path: "/transactions" });
+}
 </script>
 
 <template>
@@ -28,12 +29,12 @@ const groups = ref(user.user.groups)
         <div class="col-12 text-center p-2 shadow">
             <h2>Select Group</h2>
         </div>
-        <div class="row mt-4 justify-content-start me-2">
-          <div class="col-6" v-for="group in groups" :key="group.id" :id="group.id">
-          <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="row d-flex align-items-center mt-4 justify-content-center">
+          <div class="col-12 col-md-10 col-lg-6 text-center" v-for="group in groups" :key="group.id" :id="group.id">
+          <div class="card text-dark bg-light mb-3" >
             <div class="card-body">
               <h5 class="card-title mb-3">{{ group.name }}</h5>
-              <a href="#" class="btn btn-primary">Transactions</a>
+              <a href="#" class="btn btn-primary" @click="selectGroup(group.id)">View</a>
             </div>
           </div>
         </div>

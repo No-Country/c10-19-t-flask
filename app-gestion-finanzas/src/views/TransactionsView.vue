@@ -11,7 +11,7 @@ const transactions = ref([])
 const persons = ref([])
 
 const user = JSON.parse(sessionStorage.getItem("user"))
-const group_id = user.user.groups[0].id
+const group_id = localStorage.getItem('group_id')
 const user_id = user.user.id
 const user_fullname = user.user.fullname
 const user_totals = ref("***")
