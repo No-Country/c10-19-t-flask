@@ -101,5 +101,6 @@ class Transaction(db.Model, BaseModelMixin):
     user_id = Column(ForeignKey('users.id'))
     group_id = Column(ForeignKey('groups.id'))
 
+    category = db.relationship('Category')
     user = db.relationship("User")
 
