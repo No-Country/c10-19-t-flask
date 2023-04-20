@@ -1,12 +1,41 @@
 <script setup>
+
 import NavBar from '../components/NavBar.vue'
 import FooterNavBar from '../components/FooterNavBar.vue'
 import AsideNavBar from '../components/AsideBar.vue'
 import {RouterLink} from 'vue-router'
+import ChildComps from '../views/AddExpendingView.vue'
+import { ref } from 'vue'
 
+
+const transactions = ref([])
+
+
+const user = JSON.parse(sessionStorage.getItem("user"))
+console.log(user)
+const group_id = user.user.groups[0].id
+console.log(group_id)
+const user_id = user.user.id
+console.log(user_id)
+
+async function getData(){
+        const res = await fetch(`https://clownstech.com/app-finanzas/api/v1/${user_id}/transaction`+`?group_id=${group_id}`);
+        const finalRes = await res.json();
+        transactions.value = finalRes;
+        // .then(response => response.json())
+        // .then(data => {
+        //   transactions.data = data
+        // })
+        // .catch(error => console.log('error', error));
+      }
+
+console.log(transactions)
+
+getData()
 </script>
 
 <template>
+
 <header>
     
     <NavBar class="sticky-top bg-body-tertiary d-none d-md-block"/>
@@ -39,17 +68,17 @@ import {RouterLink} from 'vue-router'
 
 <div class="row justify-content-center mt-4 g-5">
   <div class="col text-center">
-    <h1>Today</h1>
+    <p class="h1">Transactions</p>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-5" v-for="transaction in transactions.data" :key="transaction.id">
   <div class="col-3">
-    <h1>holass</h1>
+    <p class="h3">{{ transaction.date }}</p>
   </div>
   <div class="col-6 text-center">
-    <h1 class="">com estas</h1>
+    <p class="h3">{{ transaction.category_id }}</p>
   </div>
   <div class="col-3 text-end">
-    <h1 class="text-end">chau</h1>
+    <p class="text-end h3">{{ transaction.value }}</p>
   </div>
 </div>
 </div>

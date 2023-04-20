@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar.vue'
 import FooterNavBar from '../components/FooterNavBar.vue'
 import AsideNavBar from '../components/AsideBar.vue'
 import {RouterLink} from 'vue-router'
+
+
 </script>
 
 <template>
@@ -26,7 +28,7 @@ import {RouterLink} from 'vue-router'
     <div class="row text-start justify-content-center">
       <div class="col-6">
       
-      <input type="text" class= "form-control-plaintext border-0 border-bottom border-warning" id="floatingInputGrid">
+      <input type="text"  class= "form-control-plaintext border-0 border-bottom border-warning" id="floatingInputGrid">
     </div>  
       
     </div>
@@ -40,7 +42,7 @@ import {RouterLink} from 'vue-router'
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default"><i class="bi bi-chat-square-dots-fill"></i></span>
   </div>
-  <select class="form-control">
+  <select class="form-control" >
     <option value="" disabled selected>Select an icon</option>
     <option value="bi bi-emoji-laughing-fill"><i class="bi bi-emoji-laughing-fill"></i> Emoji laughing</option>
     <option value="bi bi-people-fill"><i class="bi bi-people-fill"></i> People</option>

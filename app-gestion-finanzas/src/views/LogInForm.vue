@@ -1,6 +1,36 @@
 <script setup>
 import NavBar from '../components/NavBar.vue'
-import {RouterLink} from 'vue-router'
+import {RouterLink, createRouterMatcher, routerKey} from 'vue-router'
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const data = {
+  email: undefined,
+  password: undefined,
+};
+console.log(data)
+
+const login = () => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data), 
+    redirect: 'follow'
+  };
+  
+  fetch("https://clownstech.com/app-finanzas/api/v1/login", requestOptions)
+    .then(response => response.text())
+    .then((response) => {
+            sessionStorage.setItem("user", response)
+            router.replace({ name: "transactions", path: "/transactions" });
+        })
+    .catch(error => console.log('error', error));
+   
+};
+
 
 </script>
 
@@ -16,7 +46,7 @@ import {RouterLink} from 'vue-router'
         <div class="row justify-content-center">
           <div class="col-10">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="data.email">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>    
         </div>
@@ -25,8 +55,8 @@ import {RouterLink} from 'vue-router'
       <div class="mb-2">
         <div class="row justify-content-center">
           <div class="col-10">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="exampleInputPassword1" class="form-label" >Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="data.password">
           </div>
         </div>  
       </div>
@@ -41,7 +71,7 @@ import {RouterLink} from 'vue-router'
       </div>
 
       <div class="row justify-content-center">
-        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/transactions" class="nav-link active" aria-current="page">Entrar</RouterLink></button>  
+        <button type="button" class="btn btn-success shadow col-10 nav-link active" aria-current="page" @click="login" >Entrar</button>  
       </div>
     
 

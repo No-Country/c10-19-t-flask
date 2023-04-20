@@ -2,6 +2,30 @@
 import NavBar from '../components/NavBar.vue'
 import {RouterLink} from 'vue-router'
 
+const form = {
+  email: undefined,
+  fullname: undefined,
+  password: undefined,
+};
+console.log(form)
+
+const submitForm = () => {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(form), 
+    redirect: 'follow'
+  };
+  
+  fetch("https://clownstech.com/app-finanzas/api/v1/signup", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+};
+
+
 </script>
 
 <template>
@@ -16,7 +40,7 @@ import {RouterLink} from 'vue-router'
         <div class="row justify-content-center">
           <div class="col-10">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="form.email">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>    
         </div>
@@ -25,17 +49,8 @@ import {RouterLink} from 'vue-router'
       <div class="mb-3">
         <div class="row justify-content-center">
           <div class="col-10">
-            <label for="exampleInputPassword1" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputText1">
-          </div>
-        </div>  
-      </div>
-
-      <div class="mb-3">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <label for="exampleInputPassword1" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="exampleInputText1">
+            <label for="exampleInputPassword1" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="exampleInputText1" v-model="form.fullname">
           </div>
         </div>  
       </div>
@@ -44,31 +59,13 @@ import {RouterLink} from 'vue-router'
         <div class="row justify-content-center">
           <div class="col-10">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1" v-model="form.password">
           </div>
         </div>  
-      </div>
-
-      <div class="mb-3">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-          </div>
-        </div>  
-      </div>
-
-      <div class="mb-3 form-check">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-        </div>
       </div>
 
       <div class="row justify-content-center">
-        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/" class="nav-link active" aria-current="page">Sing up</RouterLink></button>  
+        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/" class="nav-link active" aria-current="page" @click="submitForm">Sing up</RouterLink></button>  
       </div>
     
 
