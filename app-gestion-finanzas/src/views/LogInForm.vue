@@ -18,11 +18,16 @@ const login = () => {
     body: JSON.stringify(data), 
     redirect: 'follow'
   };
-  
+  JSON.stringify
   fetch("https://clownstech.com/app-finanzas/api/v1/login", requestOptions)
-    .then(response => response.text())
+    .then(response => response.json())
     .then((response) => {
-            sessionStorage.setItem("user", response)
+            sessionStorage.setItem("user", JSON.stringify(response))
+            console.log(response)
+            const groups = response.user.groups
+            if (groups.length > 1){
+              router.replace({ name: "selectgroup", path: "/selectgroup" });
+            }
             router.replace({ name: "transactions", path: "/transactions" });
         })
     .catch(error => console.log('error', error));
