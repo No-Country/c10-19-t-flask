@@ -47,7 +47,7 @@ const selectGroup = (group_id) => {
 
 <footer>
     
-  <FooterNavBar class="d-md-none d-block fixed-bottom"/> 
+ 
 </footer>
 
 </template>
