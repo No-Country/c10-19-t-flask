@@ -22,7 +22,6 @@ y la APP les va a decir cuanto gastaron el total como grupo y en total como indi
     <li>Python</li>
     <li>Flask</li>
     <li>MariaDB</li>
-    
     </ul>
 
 <h2>Integrante y Roles</h2>
