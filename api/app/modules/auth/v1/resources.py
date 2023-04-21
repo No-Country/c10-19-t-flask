@@ -51,7 +51,7 @@ class SignUp(Resource):
         except ValueError as err:
             return {'message': err.__repr__()}, 401
         
-        group = Group(name='House', description=f'House group for user {user.id}')
+        group = Group(name=f'Standard Group', description=f'Group created for {user.fullname}')
         group.save()
         member_group = Member(group_id=group.id, user_id=user.id)
         member_group.save()
