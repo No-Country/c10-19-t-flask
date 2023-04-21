@@ -42,5 +42,5 @@ y la APP les va a decir cuanto gastaron el total como grupo y en total como indi
 
 </ul>
 
-<a href="#">LINK DEL DEPLOY</a>
+<a href="https://clownstech.com/">LINK DEL DEPLOY</a>
 
