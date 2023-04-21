@@ -10,7 +10,7 @@
                 <RouterLink to="/" class="nav-link active " aria-current="page">temporary home</RouterLink>
               </li> -->
               <li class="nav-item p-2">
-                <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text"></i>Transactions</RouterLink>
+                <RouterLink to="/transactions" class="nav-link active fs-5" ><i class="bi bi-journal-text fs-5 p-2"></i>Transactions</RouterLink>
               </li>
               <!-- <li class="nav-item p-2">
                 <RouterLink to="/categories" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1"></i>Categories</RouterLink>

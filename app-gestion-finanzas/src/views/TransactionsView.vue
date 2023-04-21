@@ -70,19 +70,19 @@ getData()
 <div class="container-fluid">
 
   <div class="row align-items-center justify-content-center">
-      <div class="col m-2 g-2 p-2 text-center rounded-4 bg-primary p-3 shadow-color border border-3 border-light">
-        <h1>Total</h1>
+      <div class="col m-2 g-2 p-2 text-center rounded-4 p-3 shadow-color border border-3 border-light" style=" background-color: #F2CB05;">
+        <p class="h1 text-light fw-semibold">Total</p>
         <h2>$ {{ total_transactions }}</h2>
       </div>
   </div>
   <div class="row">
-    <div class="col m-2 text-center rounded-4 bg-danger border border-3 border-light pt-3 pb-3  shadow-color  ">
-        <Text class="fs-3">{{ user_fullname }}</text><br/>
+    <div class="col m-2 text-center rounded-4 bg-danger border border-3 border-light pt-3 pb-3  shadow-color" style=" background-color: #F23030;">
+        <Text class="fs-3 text-light fw-semibold">{{ user_fullname }}</text><br/>
         <text class="fs-3 fw-medium">$ {{ user_totals }}</text>
     </div>
     <template v-for="person in persons" :key="person.id">
-      <div class="col m-2 text-center rounded-4 bg-warning border border-3 border-light pt-3 pb-3 shadow-color">
-        <text class="fs-3">{{ person.fullname }}</text><br/>
+      <div class="col m-2 text-center rounded-4 border border-3 border-light pt-3 pb-3 shadow-color" style=" background-color: #F28705;">
+        <text class="fs-3 text-light fw-semibold">{{ person.fullname }}</text><br/>
         <h2 class="fs-3 fw-medium">$ {{ transactions.filter(transaction => transaction.user.id == person.id).reduce((sum, tr) => {
           sum = sum + tr.value
           return sum
@@ -96,8 +96,8 @@ getData()
     </template>  
   </div>
   <div class="row m-md-3 me-1">
-  <h2 class="text-center">Transactions</h2>
-  <ul class="list-group ms-3">
+  <p class="text-center fw-semibold fs-1 text-dark">Transactions</p>
+  <ul class="list-group ms-3 mt-4">
     <li class="list-group-item shadow d-flex justify-content-center align-items-center" v-for="transaction in transactions" :key="transaction.id">
       <div class="fs-4 fw-bold me-3">{{ transaction.date }}</div>
       <div class="ms-2 me-auto">

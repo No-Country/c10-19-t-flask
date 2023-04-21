@@ -21,6 +21,12 @@ import AddExpending from '../views/AddExpendingView.vue'
             <RouterLink to="/transactions" class="nav-link active " aria-current="page"><i class="bi bi-journal-text fs-5"></i></RouterLink>
             <RouterLink to="/transactions" class="nav-link active " aria-current="page">Transactions</RouterLink>
           </li>
+          <li class="nav-item text-center">
+          <RouterLink to="/selectgroup" class="nav-link active" aria-current="page"><i class="bi bi-people-fill fs-5" ></i></RouterLink>
+          <RouterLink to="/selectgroup" class="nav-link active " aria-current="page">Select Group</RouterLink>
+          </li>
+
+          
           <!-- <li class="nav-item text-center">
             <RouterLink to="/categories" class="nav-link active " aria-current="page"><i class="bi bi-inboxes p-1 fs-5"></i></RouterLink>
             <RouterLink to="/categories" class="nav-link active " aria-current="page">Categories</RouterLink>

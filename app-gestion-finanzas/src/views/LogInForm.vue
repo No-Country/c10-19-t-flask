@@ -45,7 +45,7 @@ const login = () => {
     <div class="container-fluid bg-body-tertiary">
       
       <form class="row d-flex justify-content-center wv-100 vh-100">
-        <div class="col-12 col-md-10 col-lg-4 py-5 shadow-lg bg-warning mb-5" style="--bs-bg-opacity: .5;">
+        <div class="col-12 col-md-10 col-lg-4 py-5 " style="--bs-bg-opacity: .5; background-color: #DDDDDD;">
         
       <div class="mb-2">
         <div class="row justify-content-center">

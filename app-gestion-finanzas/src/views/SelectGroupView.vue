@@ -31,10 +31,10 @@ const selectGroup = (group_id) => {
         </div>
         <div class="row d-flex align-items-center mt-4 justify-content-center">
           <div class="col-12 col-md-10 col-lg-6 text-center" v-for="group in groups" :key="group.id" :id="group.id">
-          <div class="card text-dark bg-light mb-3" >
-            <div class="card-body">
+          <div class="card text-dark bg-light mb-3 shadow rounded-4"  >
+            <div class="card-body rounded-4" style="background-color: #EEEEEE;">
               <h5 class="card-title mb-3">{{ group.name }}</h5>
-              <a href="#" class="btn btn-primary" @click="selectGroup(group.id)">View</a>
+              <button class="btn btn-success btn-small col-10 fs-4" @click="selectGroup(group.id)">View</button>
             </div>
           </div>
         </div>
