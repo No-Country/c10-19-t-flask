@@ -40,8 +40,8 @@ y la APP les va a decir cuanto gastaron el total como grupo y en total como indi
 <ul>
     <li><a href="#">Perfil de GitHub</a></li>
     <li>Back-end-end developer</li>
-    <li></li>
+
 </ul>
 
-<a href="#"><h2>LINK DEL DEPLOY</h2></a>
+<a href="#">LINK DEL DEPLOY</a>
 
