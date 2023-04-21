@@ -30,4 +30,4 @@ class Categories(Resource):
             'data': category_schema.dump(category)
         }
     
-api.add_resource(Categories, '/api/v1/categories', endpoint='categories')
+api.add_resource(Categories, '/v1/categories', endpoint='categories')

@@ -87,6 +87,6 @@ class SocialLogin(Resource):
             # Invalid token
             return {'message': 'Invalid token'}, 400
         
-api.add_resource(Login, '/api/v1/login', endpoint='login')
-api.add_resource(SignUp, '/api/v1/signup', endpoint='signup')
-api.add_resource(SocialLogin, '/api/v1/login/social', endpoint='socialLogin')
+api.add_resource(Login, '/v1/login', endpoint='login')
+api.add_resource(SignUp, '/v1/signup', endpoint='signup')
+api.add_resource(SocialLogin, '/v1/login/social', endpoint='socialLogin')

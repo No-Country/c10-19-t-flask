@@ -91,5 +91,5 @@ class GroupResource(Resource):
             'data': MemberSchema(only=('id','user')).dump(Member.simple_filter_all(group_id=group_id), many=True)
         }
 
-api.add_resource(Groups, '/api/v1/<user_id>/groups') # Crea nuevo grupo para determinado usuario
-api.add_resource(GroupResource, '/api/v1/<user_id>/group/<group_id>/members') # Consulta los miembros de un grupo determinado o agrega miembros al grupo
+api.add_resource(Groups, '/v1/<user_id>/groups') # Crea nuevo grupo para determinado usuario
+api.add_resource(GroupResource, '/v1/<user_id>/group/<group_id>/members') # Consulta los miembros de un grupo determinado o agrega miembros al grupo

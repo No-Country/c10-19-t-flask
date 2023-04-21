@@ -61,4 +61,4 @@ class Transactions(Resource):
     def put(self):
         pass
 
-api.add_resource(Transactions, '/api/v1/<user_id>/transaction')
+api.add_resource(Transactions, '/v1/<user_id>/transaction')
