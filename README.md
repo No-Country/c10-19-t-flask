@@ -19,10 +19,10 @@ y la APP les va a decir cuanto gastaron el total como grupo y en total como indi
 
 <h3>Back-end</h3>
     <ul>
-    <li>Vue.js</li>
-    <li>Bootstrap</li>
-    <li>Vue.js</li>
-    <li>Bootstrap</li>
+    <li>Python</li>
+    <li>Flask</li>
+    <li>MariaDB</li>
+    
     </ul>
 
 <h2>Integrante y Roles</h2>
