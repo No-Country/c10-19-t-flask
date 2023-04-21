@@ -1,5 +1,4 @@
 <script setup>
-import NavBar from '../components/NavBar.vue'
 import {RouterLink} from 'vue-router'
 
 const form = {
@@ -31,10 +30,10 @@ const submitForm = () => {
 <template>
   
   
-    <div class="container-fluid bg-body-tertiary">
+    <div class="container bg-body-tertiary">
       
       <form class="row d-flex align-items-center justify-content-center wv-100 vh-100">
-        <div class="col-12 col-sm-10 col-md-6 col-lg-4 py-5 shadow mb-5" style="--bs-bg-opacity: .5; background-color: #DDDDDD;" >
+        <div class="col-12 col-md-7 col-lg-6 col-xl-4 py-5" style="--bs-bg-opacity: .5; background-color: #DDDDDD;">
         
       <div class="mb-3">
         <div class="row justify-content-center">
@@ -63,30 +62,15 @@ const submitForm = () => {
           </div>
         </div>  
       </div>
-
-      <div class="row justify-content-center">
-        <button type="submit" class="btn btn-success shadow col-10" ><RouterLink to="/" class="nav-link active" aria-current="page" @click="submitForm">Sing up</RouterLink></button>  
-      </div>
-    
-
-    
-      <div class="mb-3">
-        <div class="row justify-content-center text-center p-4">
-          <h3 class="col-6 ">Sing up with</h3>
-        </div>
+      <div class="d-grid gap-2 text-center">
+        <RouterLink to="/" class="btn btn-success shadow my-3" aria-current="page" @click="submitForm">Sing Up</RouterLink>  
+        <h5>Sing up with</h5>
+        <button type="button" class="btn btn-primary shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
+        <button type="button" class="btn btn-danger shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
+        <div class="m-2"></div>
+        <RouterLink to="/" class="btn btn-light shadow rounded border border-secondary " aria-current="page">Go Back Login</RouterLink>
       </div>
 
-      <div class="mb-3">
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary col-10 shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-danger col-10 shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
-        </div>
-      </div>
       
       </div>
     </form>

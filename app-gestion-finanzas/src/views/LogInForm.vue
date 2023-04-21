@@ -42,10 +42,10 @@ const login = () => {
 <template>
   
   
-    <div class="container-fluid bg-body-tertiary">
+    <div class="container bg-body-tertiary">
       
-      <form class="row d-flex justify-content-center wv-100 vh-100">
-        <div class="col-12 col-md-10 col-lg-4 py-5 " style="--bs-bg-opacity: .5; background-color: #DDDDDD;">
+      <form class="row d-flex align-items-center justify-content-center wv-100 vh-100">
+        <div class="col-12 col-md-7 col-lg-6 col-xl-4 py-5" style="--bs-bg-opacity: .5; background-color: #DDDDDD;">
         
       <div class="mb-2">
         <div class="row justify-content-center">
@@ -75,34 +75,13 @@ const login = () => {
         </div>
       </div>
 
-      <div class="row justify-content-center">
-        <button type="button" class="btn btn-success shadow col-10 nav-link active" aria-current="page" @click="login" >Entrar</button>  
-      </div>
-    
-
-    
-      <div class="mb-2">
-        <div class="row justify-content-center text-center p-2">
-          <h3 class="col-6 col-sm-7">Sing in with</h3>
-        </div>
-      </div>
-
-      <div class="mb-2">
-        <div class="row justify-content-center">
-          <button type="button" class="btn btn-primary col-10 shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
-        </div>
-      </div>
-
-      <div class="mb-2">
-        <div class="row justify-content-center">
-          <button type="button" class="btn btn-danger col-10 shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
-        </div>
-      </div>
-
-      <div class="mb-2">
-        <div class="row justify-content-center">
-          <button type="button" class="btn btn-light col-10 shadow rounded border border-secondary mt-4 p-3 mt-sm-2"><RouterLink to="/singup" class="nav-link active" aria-current="page">Sing up with E-mail</RouterLink></button>
-        </div>
+      <div class="d-grid gap-2 text-center">
+        <button type="button" class="btn btn-success shadow my-3" aria-current="page" @click="login" >Login</button>
+        <h5>Sing in with</h5>
+        <button type="button" class="btn btn-primary shadow border border-secondary" ><i class="bi bi-facebook"></i> Facebook</button>
+        <button type="button" class="btn btn-danger shadow border border-secondary"  ><i class="bi bi-google"></i> Google</button>
+        <div class="m-2"></div>
+        <RouterLink to="/singup" class="btn btn-light shadow rounded border border-secondary " aria-current="page">Create Account</RouterLink>
       </div>
       
       </div>
